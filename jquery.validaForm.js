@@ -35,6 +35,11 @@ $.fn.configForm = function (options)
 			removeFieldError: function (field) {
 				field.removeClass("error");
 			},
+			customValidate : function(){
+				//CUIDADO NA HORA DE ADICIONAR A CLASSE ERRROR, POIS EM OUTRO MOMENTO ELA SERÁ REMOVIDA
+				//USE UMA CSS CLASSE DIFERENTE
+				return true;
+			},
 			onFocus: true
 		}
 
@@ -225,9 +230,8 @@ $.fn.configForm = function (options)
 		return field.val().length >= parseInt(field.attr("min"));
 	}
 
-	//EVENTOS QUE DISPARA A VALIDAï¿½ï¿½O
 
-	//EVENTO SUBMIT
+	//LISTENER QUE DISPARA A VALIDAÇÃO NO SUBMIT
 	self.submit(executeValidate);
 	
 	function executeValidate (event)
@@ -236,6 +240,11 @@ $.fn.configForm = function (options)
 		var resultField;
 		var finalResult = true;
 		currentEvent = event || false;
+		
+		if(defaults.customValidate()){
+			finalResult = false;
+		}
+		
 		// check each field
 		fields.each(function ()
 		{
