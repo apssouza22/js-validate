@@ -241,7 +241,7 @@ $.fn.configForm = function (options)
 		var finalResult = true;
 		currentEvent = event || false;
 		
-		if(defaults.customValidate()){
+		if(!defaults.customValidate()){
 			finalResult = false;
 		}
 		
