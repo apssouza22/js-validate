@@ -119,11 +119,21 @@
 				},
 				validateErro: function(){
 					alert('erro no cadastro');
+				},
+				customValidate : function(){
+					//CUIDADO NA HORA DE ADICIONAR A CLASSE ERRROR, POIS EM OUTRO MOMENTO ELA SERÁ REMOVIDA
+					//USE UMA CSS CLASSE DIFERENTE
+					var minhacondicao = false;
+					if(minhacondicao){
+						$($field).addClass('errorCustom');
+						return false;
+					}
+					return true;
 				}
 			});
 		
 		
-		//validando sem enviar o formulario(no submit)
+			//validando sem enviar o formulario(no submit)
 			$('#validar').click(function(){
 		
 				if(validate.executeValidate()){
